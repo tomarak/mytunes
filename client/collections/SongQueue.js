@@ -1,8 +1,9 @@
 // SongQueue.js - Defines a backbone model class for the song queue.
+/*
 var SongQueue = Songs.extend({
 
   initialize: function(){
-    this.on('add', function () {
+    this.on("add", function () {
       if(this.length === 1){
         this.playFirst();
       }
@@ -19,6 +20,10 @@ var SongQueue = Songs.extend({
       this.remove(this.at(0));
     }, this);
 
+    // this.on('enqueue', function (song) {
+    //   this.push(song);
+    //   this.trigger('add');
+    // }, this);
   },
 
 
@@ -26,4 +31,44 @@ var SongQueue = Songs.extend({
       this.at(0).play();
   }
 });
+*/
+
+
+
+// SongQueue.js - Defines a backbone model class for the song queue.
+var SongQueue = Songs.extend({
+
+  initialize: function(){
+    this.on('add', function () {
+      if(this.length === 1){
+        this.playFirst();
+      }
+
+
+    }, this);
+
+    this.on('ended', function () {
+      this.trigger('dequeue');
+      if(this.length > 0){
+        this.playFirst();
+      }
+    }, this);
+
+    this.on('dequeue', function () {
+      this.remove(this.at(0));
+    }, this);
+
+    // this.on('enqueue', function (song) {
+    //   this.push(song);
+    //   this.trigger('add');
+    // }, this);
+  },
+
+
+  playFirst: function(){
+      this.at(0).play();
+  }
+});
+
+
 

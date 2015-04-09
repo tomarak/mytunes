@@ -15,7 +15,7 @@ var PlayerView = Backbone.View.extend({
 
   events: {
     'ended': function() {
-      console.log('the AppView sees the song has ended');
+      this.trigger('ended', this);
     }
   },
 
