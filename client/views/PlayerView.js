@@ -7,6 +7,8 @@ var PlayerView = Backbone.View.extend({
 
   initialize: function() {
 
+    // this.on('ended', function(song){
+    // }, this);
 
   },
 
