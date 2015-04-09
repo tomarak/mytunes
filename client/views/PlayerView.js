@@ -7,11 +7,17 @@ var PlayerView = Backbone.View.extend({
 
   initialize: function() {
 
-    // this.on('ended', function(song){
+    // this.on('ended', function(){
+    //     console.log('the AppView sees the song has ended');
     // }, this);
 
   },
 
+  events: {
+    'ended': function() {
+      console.log('the AppView sees the song has ended');
+    }
+  },
 
   setSong: function(song){
     this.model = song;
@@ -21,5 +27,6 @@ var PlayerView = Backbone.View.extend({
   render: function(){
     return this.$el.attr('src', this.model ? this.model.get('url') : '');
   }
+
 
 });
